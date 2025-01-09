@@ -1,6 +1,11 @@
 def main():
     book_path = "books/frankenstein.txt"
-    make_a_report(book_path)
+    read = input("If you want to read the book as well press [y]\n")
+    if (read == "y"):
+        readable = True
+    else:
+        readable = False
+    make_a_report(book_path, readable)
 
 
 def get_book_text(path):
@@ -26,11 +31,15 @@ def get_char_dict(text):
 def sort_on(dictionary):
     return dictionary["num"]
 
-def make_a_report(path):
+def make_a_report(path, readable):
     text = get_book_text(path)
     count = get_word_count(text)
     dictionary = get_char_dict(text)
-    print(f"--- Begin report of {path} ---")
+
+    if (readable):
+        print(text)
+
+    print(f"\n--- Begin report of {path} ---")
     print(f"{count} words were found in the document \n")
     
     entries = []
@@ -44,8 +53,6 @@ def make_a_report(path):
     
     print("--- End report ---")
 
-    #If you wanna read the book, delete the commentary:
-    #print(text)
 
     
 main()
